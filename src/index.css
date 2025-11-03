@@ -35,6 +35,47 @@ body {
   font-feature-settings: 'ss01' on, 'cv01' on;
 }
 
+/* Fondo animado sin degradados: dots neón flotando */
+.motion-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.motion-bg .dot {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background-color: rgba(0, 231, 255, 0.07); /* sólido translúcido */
+  border: 1px solid rgba(0, 231, 255, 0.25);
+  box-shadow: 0 0 18px var(--glow-color), inset 0 0 10px rgba(0, 231, 255, 0.2);
+}
+
+.motion-bg .d1 { left: -80px; top: 10%; animation: drift1 26s ease-in-out infinite; }
+.motion-bg .d2 { right: -120px; top: 45%; animation: drift2 34s ease-in-out infinite; }
+.motion-bg .d3 { left: 20%; bottom: -100px; animation: drift3 30s ease-in-out infinite; }
+
+@keyframes drift1 {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(120px, -40px, 0) scale(1.06); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes drift2 {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-140px, 60px, 0) scale(1.04); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes drift3 {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(80px, -60px, 0) scale(1.08); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
 .contact-container {
   width: 100%;
   max-width: 900px;
@@ -43,6 +84,8 @@ body {
   border: 1px solid var(--border-color);
   box-shadow: 0 0 0 1px var(--border-color), 0 8px 24px rgba(0,0,0,0.35);
   padding: 2rem;
+  position: relative;
+  z-index: 1; /* por encima del fondo animado */
 }
 
 h1 {
